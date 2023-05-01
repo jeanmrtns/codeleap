@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { CreateContentForm } from '@/components/CreateContentForm'
 import { Header } from '@/components/Header'
 import { Post } from '@/components/Post'
@@ -20,15 +20,17 @@ export default function Dashboard() {
       router.push('/')
     }
   }, [username, router])
-  
+
   return (
     <>
       <Header />
 
-      <main className='container mx-auto p-6'>
+      <main className="container mx-auto p-6">
         <CreateContentForm onFinishCreate={refetch} />
-        <div className='mt-6 flex flex-col gap-6'>
-          {data?.results.map(result => <Post key={result.id} post={result} />)}
+        <div className="mt-6 flex flex-col gap-6">
+          {data?.results.map((result) => (
+            <Post key={result.id} post={result} />
+          ))}
         </div>
       </main>
     </>

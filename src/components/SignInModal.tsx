@@ -1,22 +1,27 @@
-"use client"
-import React from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
-import { Cross2Icon } from '@radix-ui/react-icons';
-import { useForm } from 'react-hook-form';
+'use client'
+import React from 'react'
+import * as Dialog from '@radix-ui/react-dialog'
+import { Cross2Icon } from '@radix-ui/react-icons'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
-import { z } from 'zod';
+import { z } from 'zod'
 
 const signInFormSchema = z.object({
-  username: z.string().min(4, 'Username must have at least 4 characters')
+  username: z.string().min(4, 'Username must have at least 4 characters'),
 })
 
 type signInData = z.infer<typeof signInFormSchema>
 
 export function SignInModal() {
   const router = useRouter()
-  const { register, handleSubmit, watch, formState: {errors} } = useForm<signInData>({
-    resolver: zodResolver(signInFormSchema)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<signInData>({
+    resolver: zodResolver(signInFormSchema),
   })
 
   async function handleSignIn(data: signInData) {
@@ -28,7 +33,9 @@ export function SignInModal() {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-          <button className='px-4 py-2 rounded bg-zinc-900 text-zinc-50'>Signin</button>
+        <button className="px-4 py-2 rounded bg-zinc-900 text-zinc-50">
+          Signin
+        </button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="bg-zinc-200 data-[state=open]:animate-overlayShow fixed inset-0" />
@@ -38,19 +45,30 @@ export function SignInModal() {
           </Dialog.Title>
           <form onSubmit={handleSubmit(handleSignIn)}>
             <fieldset className="mb-[15px] mt-6 flex flex-col gap-2">
-              <label className="text-left text-black font-normal text-[15px]" htmlFor="name">
+              <label
+                className="text-left text-black font-normal text-[15px]"
+                htmlFor="name"
+              >
                 Please enter your username
               </label>
               <input
                 className="rounded-lg px-[11px] py-2 text-sm leading-none outline-none border border-[#777777] hover:border-black focus:border-black"
                 id="name"
-                placeholder='John doe'
+                placeholder="John doe"
                 {...register('username')}
               />
-              {errors.username ? <span className='text-xs text-red-500'>{errors.username.message}</span> : null}
+              {errors.username ? (
+                <span className="text-xs text-red-500">
+                  {errors.username.message}
+                </span>
+              ) : null}
             </fieldset>
             <div className="mt-[25px] flex justify-end">
-              <button disabled={!username || username.length < 4 || !!errors.username} type="submit" className="bg-[#7695EC] uppercase text-white px-8 py-2 items-center justify-center rounded-lg font-bold leading-none focus:outline-none hover:bg-[#4571ec] transition-colors disabled:bg-zinc-500 disabled:cursor-not-allowed">
+              <button
+                disabled={!username || username.length < 4 || !!errors.username}
+                type="submit"
+                className="bg-[#7695EC] uppercase text-white px-8 py-2 items-center justify-center rounded-lg font-bold leading-none focus:outline-none hover:bg-[#4571ec] transition-colors disabled:bg-zinc-500 disabled:cursor-not-allowed"
+              >
                 Enter
               </button>
             </div>
