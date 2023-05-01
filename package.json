@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
@@ -20,7 +21,6 @@
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "date-fns": "^2.30.0",
-    "eslint": "8.39.0",
     "eslint-config-next": "13.3.2",
     "next": "13.3.2",
     "postcss": "8.4.23",
@@ -32,6 +32,9 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9"
+    "@next/eslint-plugin-next": "^13.3.4",
+    "@rocketseat/eslint-config": "^1.2.0",
+    "@tailwindcss/typography": "^0.5.9",
+    "eslint": "^8.39.0"
   }
 }
